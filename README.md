@@ -18,15 +18,8 @@ Note that the code was run and optimized on a linux machine.
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/VirajRana0/NCLE_GO_Project.git
 ```
-
-Go to the project directory
-
-```bash
-  cd my-project
-```
-
 Please make sure to install Python 3.8 or higher and the neccessary packages/modules using: 
 
 ```bash
