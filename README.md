@@ -78,6 +78,8 @@ Code and Data for the enrichment tests are located in the Ecoli, Yeast and Human
 
 An example has been calculated for the <u>E.coli 50S ribosomal subunit</u> (**PDB ID**: 6XZ7 chain S)
 
-Gif here
+<p align="center">
+  <img src="https://github.com/VirajRana0/NCLE_GO_Project/blob/main/img/6XZ7_S.gif" alt="My GIF">
+</p>
 
 Please see the VMD visualization state for 6XZ7 chain S under `img/` folder.
