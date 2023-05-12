@@ -86,10 +86,10 @@ If you found the code or data useful, please consider citing the paper:
 
 ```bibtex 
 @article {Non-covalent_lasso_entanglements,
-author     = {Example 1, Example 2}
+  author       = {Viraj Rana, Ian Sitarik, Justin Petucci, Hyebin Song, and Edward P. O'Brien},
   journal      = {bioRxiv},
-  title        = {Protein complex prediction with AlphaFold-Multimer},
-  year         = {2023}
+  title        = {A recently discovered class of tertiary structure is common across proteomes and associated with protein functions and biological processes},
+  year         = {2023},
   doi          = {10.1101/2021.10.04.463034},
   URL          = {https://www.biorxiv.org/content/early/2021/10/04/2021.10.04.463034},
 }
