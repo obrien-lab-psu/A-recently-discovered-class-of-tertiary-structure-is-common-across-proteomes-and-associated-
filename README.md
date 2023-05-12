@@ -85,7 +85,7 @@ Please see the VMD visualization state for 6XZ7 chain S under `img/` folder.
 If you found the code or data useful, please consider citing the paper: 
 
 ```bibtex 
-@article {Non-covalent lasso entanglements,
+@article {Non-covalent_lasso_entanglements,
 author     = {Example 1, Example 2}
   journal      = {bioRxiv},
   title        = {Protein complex prediction with AlphaFold-Multimer},
