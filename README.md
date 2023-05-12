@@ -18,18 +18,15 @@ Note that the code was run and optimized on a linux machine.
 Clone the project
 
 ```bash
-  git clone https://github.com/VirajRana0/NCLE_GO_Project.git
+git clone https://github.com/VirajRana0/NCLE_GO_Project.git
 ```
 Please make sure to install Python 3.8 or higher and the neccessary packages/modules using: 
 
-```bash
-  pip install -r requirements.txt
+```bash 
+pip install -r requirements.txt
 ```
 
 Optionally, you could either create a [Python virtual environment](https://docs.python.org/3/tutorial/venv.html) or a [conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands)
-
-
-
 
 ## Usage
 
@@ -39,8 +36,8 @@ To generate entanglements, please follow these steps:
 
 2. Run the entanglement code
 
-```python
-  python guassian_entanglement.py
+```python 
+python guassian_entanglement.py
 ```
 The output is located in `unmapped_GE` directory. 
 
@@ -56,8 +53,8 @@ Each file will have the same format where the columns represent:
 
 3. Cluster the entanglements and choose the correct cutoff for your species. Please see the code for the cutoffs. 
 
-```python
-  python clustering.py
+```python 
+python clustering.py
 ```
 
 The output is located in `clustered_unmapped_GE` and file format is similar as above except that vector **r** is part of the tuple (i, j, r₀, r₁, r₂, ..., rₙ)
@@ -68,12 +65,11 @@ The output is located in `clustered_unmapped_GE` and file format is similar as a
 
 Code and Data for the enrichment tests are located in the Ecoli, Yeast and Human folders. Human individual_analysis is broken up into several scripts located in `Human/individual_analyses_stochastic` to reduce computational time.
 
-```bash
+```bash 
   GO_enrichment_web.py --> GO test
   structural_analysis.py --> Structural enrichment test
   individual_analysis.py ---> Structural enrichment test
 ```
- 
 ## Entanglement Demo
 
 An example has been calculated for the <u>E.coli 50S ribosomal subunit</u> (**PDB ID**: 6XZ7 chain S)
@@ -83,3 +79,18 @@ An example has been calculated for the <u>E.coli 50S ribosomal subunit</u> (**PD
 </p>
 
 Please see the VMD visualization state for 6XZ7 chain S under `img/` folder.
+
+## Citation
+
+If you found the code or data useful, please consider citing the paper: 
+
+```bibtex 
+@article {Non-covalent lasso entanglements,
+author     = {Example 1, Example 2}
+  journal      = {bioRxiv},
+  title        = {Protein complex prediction with AlphaFold-Multimer},
+  year         = {2023}
+  doi          = {10.1101/2021.10.04.463034},
+  URL          = {https://www.biorxiv.org/content/early/2021/10/04/2021.10.04.463034},
+}
+```
