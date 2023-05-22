@@ -69,7 +69,9 @@ Code and Data for the enrichment tests are located in the Ecoli, Yeast and Human
   GO_enrichment_web.py --> GO test
   structural_analysis.py --> Structural enrichment test
   individual_analysis.py ---> Structural enrichment test
-  All the data required to run these tests are located under DATA/ folder. They were obtained as described in the Methods. 
+  
+  All the data required to run these tests are located under DATA/ folder for each organism. 
+  They were obtained as described in the Methods. 
 ```
 ## Entanglement Demo
 
