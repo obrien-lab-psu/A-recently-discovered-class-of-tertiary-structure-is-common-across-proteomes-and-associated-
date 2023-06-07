@@ -56,7 +56,7 @@ def cluster_entanglements(GE_file_w_cutoff: tuple):
         i. Identify entanglements that have any crossing residues between them that are 
             less than or equal to 3 residues apart and have the same chirality.
        
-        ii. Then check if i or j of (i,j) reside within the range (inclusive) of (k,l), and vice versa;
+        ii. Then check if i or j of (i,j) reside within the range (inclusive) of (k,l), or vice versa;
         
         iii. If yes, then check if any crossing residues are in the range of min(i,j,k,l) to max(i,j,k,l); 
         if yes, skip rest of 2
@@ -73,7 +73,7 @@ def cluster_entanglements(GE_file_w_cutoff: tuple):
     
     3. For at least two entanglements each with 1 or more crossings. 
         Loop over the entanglments two at time (avoid double counting)
-        Check if i or j of (i,j) reside within the range (inclusive) of (k,l), and vice versa;
+        Check if i or j of (i,j) reside within the range (inclusive) of (k,l), or  vice versa;
         If yes, check if number of crossing residues is the same (and it is 1 or more)
         If yes, calculate the distances between all crossing residues
             and if both have the same chiralities. 
