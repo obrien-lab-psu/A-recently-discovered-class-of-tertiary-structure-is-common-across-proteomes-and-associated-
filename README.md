@@ -22,7 +22,7 @@ Clone the project
 ```bash
 git clone https://github.com/VirajRana0/NCLE_GO_Project.git
 ```
-Please make sure to install Python 3.8 or higher and the neccessary packages/modules using: 
+Please make sure to install Python 3.9 or higher and the neccessary packages/modules using: 
 
 ```bash 
 pip install -r requirements.txt
