@@ -4,6 +4,8 @@
 
 This repository contains code used in the following paper: doi. 
 
+*Code and Project were published during Pennsylvania State University employment.*
+
 Specfically, it contains
 
     1. Code to generate non-covalent lasso entanglements given a PDB file (.pdb or .pdb1)
