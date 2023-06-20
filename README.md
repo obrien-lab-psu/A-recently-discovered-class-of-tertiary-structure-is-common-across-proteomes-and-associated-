@@ -2,9 +2,7 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-This repository contains code used in the following paper: doi. 
-
-*Code and Project were published during Pennsylvania State University employment.*
+*Author: Viraj Rana*
 
 Specfically, it contains
 
@@ -94,10 +92,10 @@ If you found the code or data useful, please consider citing the paper:
 ```bibtex 
 @article {Non-covalent_lasso_entanglements,
   author       = {Viraj Rana, Ian Sitarik, Justin Petucci, Hyebin Song, and Edward P. O'Brien},
-  journal      = {bioRxiv},
+  journal      = {?},
   title        = {A recently discovered class of tertiary structure is common across proteomes and associated with protein functions and biological processes},
   year         = {2023},
-  doi          = {10.1101/2021.10.04.463034},
-  URL          = {https://www.biorxiv.org/content/early/2021/10/04/2021.10.04.463034},
+  doi          = {?},
+  URL          = {?},
 }
 ```
