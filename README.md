@@ -93,7 +93,7 @@ If you found the code or data useful, please consider citing the paper:
 @article {Non-covalent_lasso_entanglements,
   author       = {Viraj Rana, Ian Sitarik, Justin Petucci, Hyebin Song, and Edward P. O'Brien},
   journal      = {?},
-  title        = {A recently discovered class of tertiary structure is common across proteomes and associated with protein functions and biological processes},
+  title        = {Native Non-covalent Lasso Entanglements are Common Across Proteomes and Associated with Protein Functions and Biological Processes},
   year         = {2023},
   doi          = {?},
   URL          = {?},
