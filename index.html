@@ -688,6 +688,7 @@ function addFunToCheckbox(StructSelect) {
     proteinCheckbox.addEventListener('change', (e) => {
       stage.getRepresentationsByName("protein")
         .setVisibility(e.target.checked)
+      reset_view()
     })
 
     var ligandCheckbox = document.getElementById("ligandCheckbox")
@@ -695,6 +696,7 @@ function addFunToCheckbox(StructSelect) {
     ligandCheckbox.addEventListener('change', (e) => {
       stage.getRepresentationsByName("ligand")
         .setVisibility(e.target.checked)
+      reset_view()
     })
 
     var idx = 1
@@ -748,6 +750,8 @@ function addFunToCheckbox(StructSelect) {
           j += 1
         }
         document.getElementById("info").innerHTML = info_string
+        
+        reset_view()
       })
       idx += 1
     }
