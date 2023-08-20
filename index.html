@@ -623,7 +623,12 @@ function loadStructure (arg_str) {
 
     // set info
     document.getElementById("info").innerHTML = "<i>" + json_obj.organism + "</i> protein "+ json_obj.pdb + " (chain " + json_obj.chain + ") has " + sel_ent_list.length + " unique entanglements.<br>"
-    document.getElementById("info").innerHTML += "Now showing entanglement #1 (" + (ent_info[0].length-2) + " crossings);"
+    document.getElementById("info").innerHTML += "Now showing entanglement #1 (" + (ent_info[0].length-2) + " crossings; [" + ent_info[0][0] + ", " + ent_info[0][1] + ", {"
+    for (var i = 2; i < ent_info[0].length; i++) {
+      document.getElementById("info").innerHTML += ent_info[0][i] + ", "
+    }
+    document.getElementById("info").innerHTML = document.getElementById("info").innerHTML.substr(0, document.getElementById("info").innerHTML.length - 2)
+    document.getElementById("info").innerHTML += "}]);"
 
     // // Get Ca trace
     // var CA_cor_list = [];
@@ -677,7 +682,7 @@ function loadStructure (arg_str) {
 }
 
 // Add functions to checkbox
-function addFunToCheckbox() {
+function addFunToCheckbox(StructSelect) {
     var proteinCheckbox = document.getElementById("proteinCheckbox")
     proteinCheckbox.checked = true
     proteinCheckbox.addEventListener('change', (e) => {
@@ -719,16 +724,25 @@ function addFunToCheckbox() {
         var words = info_string.split('<br>')
         info_string = words[0] + '<br>'
         var j = 1
+        var ent_info_list = JSON.parse(StructSelect.value).ent_info
         while (document.getElementById("entanglementCheckbox #"+j) != null) {
           var checkbox = document.getElementById("entanglementCheckbox #"+j)
           if (checkbox.checked) {
-            var sel_string = stage.getRepresentationsByName("crossing atoms #"+j).first.parameters.sele
-            var num_crossings = struct[0].structure.getAtomSet(new NGL.Selection(sel_string)).toArray().length
+            // var sel_string = stage.getRepresentationsByName("crossing atoms #"+j).first.parameters.sele
+            // var num_crossings = struct[0].structure.getAtomSet(new NGL.Selection(sel_string)).toArray().length
+            var ent_info = ent_info_list[j-1]
+            var ent_string = "[" + ent_info[0] + ", " + ent_info[1] + ", {"
+            for (var i = 2; i < ent_info.length; i++) {
+              ent_string += ent_info[i] + ", "
+            }
+            ent_string = ent_string.substr(0, ent_string.length - 2)
+            ent_string += "}]);"
+
             if (info_string.slice(-1)[0] == '>') {
-              info_string += "Now showing entanglement #" + j + " (" + num_crossings + " crossings);"
+              info_string += "Now showing entanglement #" + j + " (" + (ent_info.length-2) + " crossings; " + ent_string
             }
             else {
-              info_string += " #" + j + " (" + num_crossings + " crossings);"
+              info_string += " #" + j + " (" + (ent_info.length-2) + " crossings; " + ent_string
             }
           }
           j += 1
@@ -759,7 +773,7 @@ var StructSelect = createSelect([
 ], {
   onchange: function (e) {
     loadStructure(e.target.value)
-    addFunToCheckbox()
+    addFunToCheckbox(e.target)
   }
 }, { top: "8%", 
      left: "1%",
@@ -820,7 +834,7 @@ addElement(document.getElementById("cntrl_panel"), checkbox_div)
 
 loadStructure(StructSelect.value)
 
-addFunToCheckbox()
+addFunToCheckbox(StructSelect)
 
 </script>
 
