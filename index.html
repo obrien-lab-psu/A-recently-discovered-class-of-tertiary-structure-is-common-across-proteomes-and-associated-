@@ -87,12 +87,43 @@
 <script src="https://nglviewer.org/ngl/js/ngl.js"></script>
 <script src="https://unpkg.com/three"></script>
 
-<div id="main_div" style="width:80%; height:51%; margin-left: 10%;">
+<div id="main_div" style="width:80%; height:60%; margin-left: 10%;">
   <div id="left_panel" style="float: left; width:20%; height:100%; background-color: #F0F8FF">
     <div id="cntrl_panel" style="height:100%; background-color: #F0F8FF; position: relative;"></div>
-    <!-- <div id="topo_panel" style="height:68.5%; background-color: #F0FFF0; overflow: auto; position: relative;"></div> -->
   </div>
-  <div id="viewport" style="float: right; width:80%; height:100%; overflow: hidden;"></div>
+  <div id="right_panel" style="float: right; width:80%; height:100%;">
+    <div id="legend" style="width:100%; height:10%; text-align: center; background-color: #FFFFFF">
+      <svg width="15%" height="50%" viewBox="0 0 200 20">
+        <rect x="20" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
+        <rect x="25" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
+        <rect x="30" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
+        <rect x="35" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
+        <rect x="40" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
+        <rect x="45" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
+        <circle cx="18" cy="10" r="8" stroke="black" stroke-width="2" fill="orange" />
+        <circle cx="50" cy="10" r="8" stroke="black" stroke-width="2" fill="orange" />
+        <text fill="black" font-size="16" font-family="Arial" x="70" y="15">Native contact</text>
+      </svg>
+      <svg width="15%" height="50%" viewBox="0 0 200 20">
+        <circle cx="18" cy="10" r="8" stroke="black" stroke-width="2" fill="white" />
+        <text fill="black" font-size="16" font-family="Arial" x="40" y="15">Crossing residues</text>
+      </svg>
+      <br>
+      <svg width="15%" height="50%" viewBox="0 0 200 20">
+        <rect x="2" y="2" width="60" height="16" stroke="black" stroke-width="2" fill="#E6E6FA" />
+        <text fill="black" font-size="16" font-family="Arial" x="70" y="15">Protein chain</text>
+      </svg>
+      <svg width="28%" height="50%" viewBox="0 0 380 20">
+        <rect x="2" y="2" width="60" height="16" stroke="black" stroke-width="2" fill="#FF0000" />
+        <text fill="black" font-size="16" font-family="Arial" x="70" y="15">Closed loop formed by the native contact</text>
+      </svg>
+      <svg width="16%" height="50%" viewBox="0 0 220 20">
+        <rect x="2" y="2" width="60" height="16" stroke="black" stroke-width="2" fill="#0000FF" />
+        <text fill="black" font-size="16" font-family="Arial" x="70" y="15">Threading segment</text>
+      </svg>
+    </div>
+    <div id="viewport" style="float: right; width:100%; height:90%; overflow: hidden;"></div>
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -105,36 +136,6 @@
   <div id="info" style="text-align: center; font-size: 1.0vw; font-family: Arial; background-color: #FFF0F5; vertical-align: middle; display: table-cell; line-height: 3.0vmin"></div>
 </div>
 
-<div id="legend" style="width:80%; height:3%; text-align: center; margin-top:0.5%; margin-left: 10%;">
-  <svg width="15%" height="100%" viewBox="0 0 200 20">
-    <rect x="20" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
-    <rect x="25" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
-    <rect x="30" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
-    <rect x="35" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
-    <rect x="40" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
-    <rect x="45" y="6" width="3" height="8" stroke="black" stroke-width="0" fill="orange" />
-    <circle cx="18" cy="10" r="8" stroke="black" stroke-width="2" fill="orange" />
-    <circle cx="50" cy="10" r="8" stroke="black" stroke-width="2" fill="orange" />
-    <text fill="black" font-size="16" font-family="Arial" x="70" y="15">Native contact;</text>
-  </svg>
-  <svg width="15%" height="100%" viewBox="0 0 200 20">
-    <circle cx="18" cy="10" r="8" stroke="black" stroke-width="2" fill="white" />
-    <text fill="black" font-size="16" font-family="Arial" x="40" y="15">Crossing residues;</text>
-  </svg>
-  <svg width="15%" height="100%" viewBox="0 0 200 20">
-    <rect x="2" y="2" width="60" height="16" stroke="black" stroke-width="2" fill="#E6E6FA" />
-    <text fill="black" font-size="16" font-family="Arial" x="70" y="15">Protein chain;</text>
-  </svg>
-  <svg width="28%" height="100%" viewBox="0 0 380 20">
-    <rect x="2" y="2" width="60" height="16" stroke="black" stroke-width="2" fill="#FF0000" />
-    <text fill="black" font-size="16" font-family="Arial" x="70" y="15">Closed loop formed by the native contact;</text>
-  </svg>
-  <svg width="16%" height="100%" viewBox="0 0 220 20">
-    <rect x="2" y="2" width="60" height="16" stroke="black" stroke-width="2" fill="#0000FF" />
-    <text fill="black" font-size="16" font-family="Arial" x="70" y="15">Threading segment;</text>
-  </svg>
-</div>
-
 <script>
 document.getElementById("loading_div").style.visibility="hidden"
 
@@ -145,7 +146,6 @@ var stage = new NGL.Stage( "viewport" );
 window.addEventListener( "resize", function( event ){
     stage.handleResize();
 }, false );
-
 
 // Code for example: interactive/simple-viewer
 stage.setParameters({
@@ -236,157 +236,6 @@ function reset_view() {
       1000
     )
   }
-}
-
-// calculate gN and gC
-function calc_g(g_list, M, resid_1, resid_2) {
-  var terminal_cutoff = 5
-  var range = [[terminal_cutoff, (resid_1-1)-4], [(resid_2-1)+4, M.length-terminal_cutoff]]
-  var i;
-  for (i = 0; i < 2; i++) {
-    var j1;
-    var g = 0;
-    for (j1 = resid_1-1; j1 < resid_2-1; j1++) {
-      var j2;
-      for (j2 = range[i][0]; j2 < range[i][1]; j2++) {
-        g += M[j1][j2];
-      }
-    }
-    g = Math.round(g/4/3.14)
-    g_list.push(g)
-  }
-}
-
-// Generate the topology graph
-function create_topo_graph (topo_graph, gN, gC, resid_1, resid_2) {
-  var svgns = "http://www.w3.org/2000/svg";
-
-  var center_x = 32
-  var center_y = 28
-  var r_1 = 12
-  var r_2 = 24
-  var angle_start = 45/180*3.14
-  var angle_end = 170/180*3.14
-
-  topo_graph.innerHTML = ""
-
-  var graph = document.createElementNS(svgns, "svg")
-  graph.setAttribute("width", "100%")
-  graph.setAttribute("height", "100%")
-  graph.setAttribute("viewBox", "0 0 64 64")
-  
-  var graph_html_list = []
-  var curve_width = "2.5%"
-  var edge_width = "5%"
-  // add the closed loop
-  var curve_color = "red"
-  var edge_color = "white"
-  var base_string = "<path d='M28 50 C28 48 28 46 24 44 C10 38 8 12 32 12 C56 12 54 38 40 44 C36 46 36 48 36 50' "
-  graph_html_list.push(base_string+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-
-  var curve_color = "gray"
-  var edge_color = "white"
-  var base_string = "<path d='M22 52 C24 56 28 54 28 50' "
-  graph_html_list.push(base_string+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-  var base_string = "<path d='M36 50 C36 54 40 56 42 52' "
-  graph_html_list.push(base_string+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-
-  // add N-ter entanglements
-  var end_x = 22;
-  var end_y = 52;
-  if (gN != 0) {
-    var curve_color = "blue"
-    var edge_color = "white"
-    var delta_angle = (angle_end - angle_start) / Math.abs(gN);
-    var i;
-    for (i = 0; i < Math.abs(gN); i++) {
-      var angle = angle_start + delta_angle * i;
-      var x1 = center_x - r_1 * Math.sin(angle)
-      var y1 = center_y + r_1 * Math.cos(angle)
-      var x2 = center_x - r_2 * Math.sin(angle)
-      var y2 = center_y + r_2 * Math.cos(angle)
-      var base_string_1 = "<path d='M"+end_x.toString()+" "+end_y.toString()+" C"+(end_x-2).toString()+" "+(end_y-4).toString()+" "+(x1+2).toString()+" "+(y1+4).toString()+" "+x1.toString()+" "+y1.toString()+"' "
-      var base_string_2 = "<path d='M"+x1.toString()+" "+y1.toString()+" C"+(x1-2).toString()+" "+(y1-4).toString()+" "+(x2+2).toString()+" "+(y2+4).toString()+" "+x2.toString()+" "+y2.toString()+"' "
-      
-      if (gN > 0) {
-        graph_html_list.unshift(base_string_1+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string_1+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-        graph_html_list.push(base_string_2+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string_2+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-      }
-      else {
-        graph_html_list.push(base_string_1+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string_1+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-        graph_html_list.unshift(base_string_2+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string_2+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-      }
-
-      end_x = x2
-      end_y = y2
-    }
-  }
-  var curve_color = "gray"
-  var edge_color = "white"
-  var x1 = 4
-  var y1 = end_y
-  var base_string = "<path d='M"+end_x.toString()+" "+end_y.toString()+" C"+(end_x-2).toString()+" "+(end_y-4).toString()+" "+(x1+4).toString()+" "+(y1+2).toString()+" "+x1.toString()+" "+y1.toString()+"' "
-  graph_html_list.push(base_string+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-  graph_html_list.push("<text text-anchor='start' fill='black' font-size='30%' font-family='Arial' x=1 y="+(end_y+6).toString()+"> N-ter </text>")
-
-  // add C-ter entanglements
-  var end_x = 42;
-  var end_y = 52;
-  if (gC != 0) {
-    var curve_color = "blue"
-    var edge_color = "white"
-    var delta_angle = (angle_end - angle_start) / Math.abs(gC);
-    var i;
-    for (i = 0; i < Math.abs(gC); i++) {
-      var angle = angle_start + delta_angle * i;
-      var x1 = center_x + r_1 * Math.sin(angle)
-      var y1 = center_y + r_1 * Math.cos(angle)
-      var x2 = center_x + r_2 * Math.sin(angle)
-      var y2 = center_y + r_2 * Math.cos(angle)
-      var base_string_1 = "<path d='M"+end_x.toString()+" "+end_y.toString()+" C"+(end_x+2).toString()+" "+(end_y-4).toString()+" "+(x1-2).toString()+" "+(y1+4).toString()+" "+x1.toString()+" "+y1.toString()+"' "
-      var base_string_2 = "<path d='M"+x1.toString()+" "+y1.toString()+" C"+(x1+2).toString()+" "+(y1-4).toString()+" "+(x2-2).toString()+" "+(y2+4).toString()+" "+x2.toString()+" "+y2.toString()+"' "
-      
-      if (gC < 0) {
-        graph_html_list.unshift(base_string_1+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string_1+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-        graph_html_list.push(base_string_2+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string_2+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-      }
-      else {
-        graph_html_list.push(base_string_1+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string_1+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-        graph_html_list.unshift(base_string_2+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string_2+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-      }
-
-      end_x = x2
-      end_y = y2
-    }
-  }
-  var curve_color = "gray"
-  var edge_color = "white"
-  var x1 = 60
-  var y1 = end_y
-  var base_string = "<path d='M"+end_x.toString()+" "+end_y.toString()+" C"+(end_x+2).toString()+" "+(end_y-4).toString()+" "+(x1-4).toString()+" "+(y1+2).toString()+" "+x1.toString()+" "+y1.toString()+"' "
-  graph_html_list.push(base_string+"stroke='"+edge_color+"' stroke-width='"+edge_width+"' fill='none'/>"+base_string+"stroke='"+curve_color+"' stroke-width='"+curve_width+"' fill='none'/>")
-  graph_html_list.push("<text text-anchor='end' fill='black' font-size='30%' font-family='Arial' x=63 y="+(end_y+6).toString()+"> C-ter </text>")
-
-  // add native contacts
-  graph_html_list.push("<line x1=28 y1=50 x2=36 y2=50 stroke='orange' stroke-width='"+curve_width.toString()+"' stroke-dasharray='1% 0.5%' />")
-  graph_html_list.push("<circle cx=28 cy=50 r=2 stroke='black' stroke-width='1%' fill='orange' />")
-  graph_html_list.push("<circle cx=36 cy=50 r=2 stroke='black' stroke-width='1%' fill='orange' />")
-  graph_html_list.push("<text text-anchor='end' fill='black' font-size='25%' font-family='Arial' x=30 y=60> "+resid_1.toString()+" </text>")
-  graph_html_list.push("<text text-anchor='start' fill='black' font-size='25%' font-family='Arial' x=34 y=60> "+resid_2.toString()+" </text>")
-  
-  // add title
-  var ggN = gN.toString()
-  if (gN > 0) { ggN = "+"+ggN }
-  var ggC = gC.toString()
-  if (gC > 0) { ggC = "+"+ggC }
-  graph_html_list.push("<text text-anchor='middle' fill='black' font-size='30%' font-family='Arial' x=32 y=6> "+
-    "<tspan> <tspan font-style='italic'>g</tspan><tspan font-size='70%' baseline-shift='sub'>N</tspan> = "+ggN+"; <tspan font-style='italic'>g</tspan><tspan font-size='70%' baseline-shift='sub'>C</tspan> = "+ggC+" </tspan>"
-    +" </text>")
-  
-  var graph_html = graph_html_list.join(" ")
-  graph.innerHTML = graph_html
-
-  topo_graph.appendChild(graph)
 }
 
 // load structure and show entanglements
@@ -503,28 +352,6 @@ function loadStructure (arg_str) {
     checkbox_div.innerHTML += "<br>" 
   }
   
-  // // re-initialize the topology graph panels
-  // topo_graph_div.innerHTML = ""
-  // topo_graph_div.style.height = (div_length*atom_pairs.length)+"vw"
-  // var i;
-  // var topo_graph_div_list = []
-  // for(i = 0; i < atom_pairs.length; i++) {
-  //   var topo_sub_div = createElement("div", 
-  //       { id: "topo_div_"+(i+1) }, 
-  //       { top: (i/atom_pairs.length*100)+"%", 
-  //         left: "0%", 
-  //         width: "100%",
-  //         height: (1/atom_pairs.length*100)+"%",
-  //         textAlign: "center",
-  //         backgroundColor: "white",
-  //         border: "2px solid black"})
-  //   if (i != 0) {
-  //     topo_sub_div.style.borderTop = "none"
-  //   }
-  //   topo_graph_div.appendChild(topo_sub_div)
-  //   topo_graph_div_list.push(topo_sub_div)
-  // }
-  
   // load structure and show entanglements
   Promise.all([
     stage.loadFile(url, {sele: chain_sel}).then(function (o) {
@@ -622,62 +449,13 @@ function loadStructure (arg_str) {
     reset_view()
 
     // set info
-    document.getElementById("info").innerHTML = "<i>" + json_obj.organism + "</i> protein "+ json_obj.pdb + " (chain " + json_obj.chain + ") has " + sel_ent_list.length + " unique entanglements.<br>"
+    document.getElementById("info").innerHTML = "<i>" + json_obj.organism + "</i> protein structure (PDB ID: "+ json_obj.pdb + ", Chain " + json_obj.chain + ") has " + sel_ent_list.length + " unique entanglements.<br>"
     document.getElementById("info").innerHTML += "Now showing entanglement #1 (" + (ent_info[0].length-2) + " crossings; [" + ent_info[0][0] + ", " + ent_info[0][1] + ", {"
     for (var i = 2; i < ent_info[0].length; i++) {
       document.getElementById("info").innerHTML += ent_info[0][i] + ", "
     }
     document.getElementById("info").innerHTML = document.getElementById("info").innerHTML.substr(0, document.getElementById("info").innerHTML.length - 2)
     document.getElementById("info").innerHTML += "}]);"
-
-    // // Get Ca trace
-    // var CA_cor_list = [];
-    // ol[0].structure.eachAtom(function (ap) {
-    //   CA_cor_list.push([ap.x, ap.y, ap.z])
-    // }, new NGL.Selection(".CA"))
-    // // Get curve coordinates
-    // var R = []
-    // var dR = []
-    // var n_atom = CA_cor_list.length;
-    // var i;
-    // for(i = 0; i < n_atom-1; i++) {
-    //   R.push([(CA_cor_list[i][0]+CA_cor_list[i+1][0])/2, (CA_cor_list[i][1]+CA_cor_list[i+1][1])/2, (CA_cor_list[i][2]+CA_cor_list[i+1][2])/2])
-    //   dR.push([CA_cor_list[i+1][0]-CA_cor_list[i][0], CA_cor_list[i+1][1]-CA_cor_list[i][1], CA_cor_list[i+1][2]-CA_cor_list[i][2]])
-    // }
-    // // Gauss integral contents
-    // var M = [];
-    // var i;
-    // for(i = 0; i < n_atom-1; i++) {
-    //   M.push([])
-    //   var j;
-    //   for(j = 0; j < n_atom-1; j++) {
-    //     M[i].push(0)
-    //   }
-    // }
-    // var i;
-    // for(i = 0; i < n_atom-2; i++) {
-    //   var j;
-    //   for(j = i+1; j < n_atom-1; j++) {
-    //     var v1 = [R[i][0]-R[j][0], R[i][1]-R[j][1], R[i][2]-R[j][2]]
-    //     var v1_n = (v1[0]**2+v1[1]**2+v1[2]**2)**(3/2)
-    //     var v11 = [v1[0]/v1_n, v1[1]/v1_n, v1[2]/v1_n]
-    //     var v2 = [dR[i][1]*dR[j][2]-dR[i][2]*dR[j][1], dR[i][2]*dR[j][0]-dR[i][0]*dR[j][2], dR[i][0]*dR[j][1]-dR[i][1]*dR[j][0]]
-    //     M[i][j] = v11[0]*v2[0] + v11[1]*v2[1] + v11[2]*v2[2]
-    //     M[j][i] = M[i][j]
-    //   }
-    // }
-    // //Calculate gN and gC
-    // var i;
-    // for(i = 0; i < atom_pairs.length; i++) {
-    //   var res_idx = []
-    //   var sel = atom_pairs[i].join(" or ")
-    //   ol[0].structure.eachAtom(function (ap) {
-    //     res_idx.push(ap.resno)
-    //   }, new NGL.Selection(sel))
-    //   var g_list = []
-    //   calc_g(g_list, M, res_idx[0], res_idx[1])
-    //   create_topo_graph(topo_graph_div_list[i], g_list[0], g_list[1], res_idx[0], res_idx[1])
-    // }
   })
 }
 
@@ -759,7 +537,7 @@ function addFunToCheckbox(StructSelect) {
 
 //////////////////////// Generate page contents //////////////////////////////
 addElement(document.getElementById("cntrl_panel"), createElement("span", {
-  innerText: "Select an example below:"
+  innerText: "Select a gene (UniProt Accession number) below:"
 }, { top: "1%", 
      left: "1%", 
      "font-family": "Arial", 
@@ -779,7 +557,7 @@ var StructSelect = createSelect([
     loadStructure(e.target.value)
     addFunToCheckbox(e.target)
   }
-}, { top: "8%", 
+}, { top: "12%", 
      left: "1%",
      "font-family": "Arial", 
      "font-size": "1.6vmin"})
@@ -792,7 +570,7 @@ var centerButton = createElement("input", {
   onclick: function () {
     reset_view()
   }
-}, { top: "8%", 
+}, { top: "12%", 
      left: "48%",
      "font-family": "Arial", 
      "font-size": "1.5vmin" })
@@ -800,7 +578,7 @@ addElement(document.getElementById("cntrl_panel"), centerButton)
 
 addElement(document.getElementById("cntrl_panel"), createElement("span", {
   innerText: "Check/uncheck the following options to show/hide:"
-}, { top: "15%", 
+}, { top: "20%", 
      left: "1%",
      "font-family": "Arial", 
      "font-size": "1.6vmin"}))
@@ -808,33 +586,14 @@ addElement(document.getElementById("cntrl_panel"), createElement("span", {
 // initialize the checkbox panel
 var checkbox_div = createElement("div", 
   { id: "checkbox_div" }, 
-  { top: "25%", 
+  { top: "30%", 
     left: "1%", 
     width: "99%",
-    height: "75%",
+    height: "70%",
     textAlign: "center",
     overflow: "auto",
     backgroundColor: "#F0FFF0",})
 addElement(document.getElementById("cntrl_panel"), checkbox_div)
-
-// addElement(document.getElementById("topo_panel"), createElement("div", {
-//   innerHTML: "Entanglement topology (<i>Noncovalent</i> lassos):"
-// }, { top: "1%", 
-//      left: "1%", 
-//      "font-family": "Arial", 
-//      "font-size": "1.6vmin"}))
-
-// // initialize the topology graph panels
-// var div_length = 14
-// var topo_graph_div = createElement("div", 
-//   { id: "topo_div" }, 
-//   { top: "15%", 
-//     left: "1%", 
-//     width: div_length+"vw",
-//     height: div_length+"vw",
-//     textAlign: "center",
-//     backgroundColor: "white"})
-// addElement(document.getElementById("topo_panel"), topo_graph_div)
 
 loadStructure(StructSelect.value)
 
