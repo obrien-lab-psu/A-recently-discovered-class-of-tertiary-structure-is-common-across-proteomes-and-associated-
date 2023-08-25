@@ -92,9 +92,9 @@ If you found the code or data useful, please consider citing the paper:
 
 ```bibtex 
 @article {Non-covalent_lasso_entanglements,
-  author       = {Viraj Rana, Ian Sitarik, Justin Petucci, Hyebin Song, and Edward P. O'Brien},
+  author       = {Viraj Rana, Ian Sitarik, Yang Jiang, Justin Petucci, Hyebin Song, and Edward P. O'Brien},
   journal      = {?},
-  title        = {Native Non-covalent Lasso Entanglements are Common Across Proteomes and Associated with Protein Functions and Biological Processes},
+  title        = {Non-covalent Lasso Entanglements in Folded Proteins: Prevalence, Functional Implications, and Evolutionary Significance},
   year         = {2023},
   doi          = {?},
   URL          = {?},
