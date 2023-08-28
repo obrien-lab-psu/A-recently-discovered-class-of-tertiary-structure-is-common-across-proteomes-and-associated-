@@ -35,7 +35,7 @@ individual_analysis.py --> answers the question are non-covalent entanglements e
 pval_correction_and_freq.py --> multiple hypothesis correction of p-values and display of structural anlaysis final result
   - Final result is final_ecoli_corrected.png
 
-create_pw_distance_matrices_Ecoli.py --> creates Array_of_distance_matrices.npz binary file
+create_pw_distance_matrices.py --> creates Array_of_distance_matrices.npz binary file
 
 GO_enrichment_web.py --> Gene Ontology enrichment analysis and data collection code file
 
