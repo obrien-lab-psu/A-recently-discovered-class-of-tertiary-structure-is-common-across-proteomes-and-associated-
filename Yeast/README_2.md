@@ -55,3 +55,5 @@ DATA/percentages_of_knots_in_my_db.npz --> Proteins with Knots/slipknots. They a
 DATA/genes_with_representative_proteins --> Representative genes after filtering described in Methods
 
 *Please note that all inputs thus far are in PDB numbering (entanglement and functional information)*
+
+*Please note that all data obtained from web services such as UniProt and QuickGO (for Gene Ontology analysis) can change since they continuously update their databases*
