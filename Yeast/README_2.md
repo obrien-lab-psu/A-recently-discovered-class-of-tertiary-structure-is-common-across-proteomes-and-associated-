@@ -1,3 +1,4 @@
+Run all Python files as python [name].py. 
 
 The purpose of this second README is to explain the code files and files in DATA/ for each organism folder
 
