@@ -33,7 +33,7 @@ individual_analysis.py --> answers the question are non-covalent entanglements e
   - pickle file contains the probability distribution for the ratio of the surface accessible solvent area (SASA) of the crossings to the average SASA for the protein was generated with a bin size of 0.01 for each gene individually in the proteome
 
 pval_correction_and_freq.py --> multiple hypothesis correction of p-values and display of structural anlaysis final result
-  - Final result is final_ecoli_corrected.png
+  - Final result is final_human_corrected.png
 
 create_pw_distance_matrices.py --> creates Array_of_distance_matrices.npz binary file
 
