@@ -1,6 +1,6 @@
-Run all Python files as python [name].py. 
-
 The purpose of this second README is to explain the code files and files in DATA/ for each organism folder
+
+Run all Python files as python [name].py
 
 structural_analysis.py --> answers the question are non-covalent entanglements (mainly crossing residues) enriched/depleted/neither near functional sites
 
