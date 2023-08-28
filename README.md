@@ -33,7 +33,7 @@ Optionally, you could either create a [Python virtual environment](https://docs.
 
 ## Usage
 
-To generate entanglements, please follow these steps under the Entanglement_code folder: 
+To generate entanglements, please follow these steps under the 'Entanglement_code' folder: 
 
 1. Put the protein files in the `PDBs` directory
 
