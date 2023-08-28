@@ -69,7 +69,7 @@ The output is located in `clustered_unmapped_GE` and file format is similar as a
 Code and Data for the enrichment tests are located in the Ecoli, Yeast and Human folders. Human individual_analysis is broken up into several scripts located in `Human/individual_analyses_stochastic` to reduce computational time.
 
 ```bash 
-  GO_enrichment_web.py --> GO test
+  GO_enrichment_web.py --> Gene Ontology enrichment test
   structural_analysis.py --> Structural enrichment test
   individual_analysis.py ---> Structural enrichment test
   
@@ -84,7 +84,7 @@ An example has been calculated for the <u>E.coli 50S ribosomal subunit</u> (**PD
   <img src="https://github.com/VirajRana0/NCLE_GO_Project/blob/main/img/6XZ7_S.gif" alt="My GIF">
 </p>
 
-Please see the VMD visualization state for 6XZ7 chain S under `img/` folder.
+Please see the VMD visualization state for 6XZ7 chain S under `img/` folder. 
 
 ## Citation
 
