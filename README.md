@@ -21,7 +21,7 @@ Clone the project
 
 ```bash
 git clone https://github.com/VirajRana0/NCLE_GO_Project.git OR
-git clone https://github.com/obrien-lab-psu/Native-Non-covalent-Lasso-Entanglements-are-Common-Across-Proteomes-and-Associated-with-Protein-Func.git
+git clone https://github.com/obrien-lab-psu/Non-covalent-Lasso-Entanglements-in-Folded-Proteins-Prevalence-Functional-Implications-and-Evolut.git
 ```
 Please make sure to install Python 3.9 or higher and the neccessary packages/modules using: 
 
