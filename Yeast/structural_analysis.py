@@ -28,10 +28,10 @@ def null_dist_p_val_calc(uniprot: str):
 
     """
 
-    pdb_resids = np.load("DATA/pdb_resids_Yeast_V2.npz", allow_pickle = True)["arr_0"].tolist()
-    pdb_coor = np.load("DATA/pdb_coor_Yeast_V2.npz", allow_pickle = True)["arr_0"].tolist()
+    pdb_resids = np.load("DATA/pdb_resids_Yeast_V3.npz.npz", allow_pickle = True)["arr_0"].tolist()
+    pdb_coor = np.load("DATA/pdb_coor_Yeast_V3.npz.npz", allow_pickle = True)["arr_0"].tolist()
     functional_info = np.load("DATA/yeast_V2_functional_all.npz", allow_pickle = True)["arr_0"].tolist()
-    entanglement_info =  np.load("DATA/yeast_V2_entanglements_all_new_clustering.npz", allow_pickle = True)["arr_0"].tolist()
+    entanglement_info =  np.load("DATA/yeast_non_covalent_lassos_4_5_no_knots.npz", allow_pickle = True)["arr_0"].tolist()
 
     logger.info(f"Try: {uniprot}")
 
@@ -106,7 +106,7 @@ def null_dist_p_val_calc(uniprot: str):
 
     gene_pdb_chain = f"{uniprot}_{gene_pdb}_{rep_chain}"
 
-    with open("DATA/yeast_sasa_dict.pkl", "rb") as reader:
+    with open("DATA/yeast_sasa_dict_new.pkl", "rb") as reader:
 
         sasa_data_arrays = pickle.load(reader)[uniprot][gene_pdb][rep_chain]
 
@@ -191,7 +191,7 @@ def check_random_position(difference_residues: set, gene_pdb_chain: str, sasa_da
 
         solvent_exposure = sasa_data_arrays["all_resids_avg_ratios"][random_placement_idx][0]
 
-        random_placement_solv_exposure_probability = 0.0001 + 0.9423*np.exp(-244.039*solvent_exposure) + 0.0474*np.exp(-16.2326*solvent_exposure) + 0.0103*np.exp(-2.762*solvent_exposure)
+        random_placement_solv_exposure_probability = 0.0001 + 0.931*np.exp(-266.8475*solvent_exposure) + 0.057*np.exp(-21.4428*solvent_exposure) + 0.012*np.exp(-2.7098*solvent_exposure)
         # bin = 0.01
         
         check_difference_residues.discard(random_placement)
@@ -385,7 +385,7 @@ def main():
 
     result_obj = set()
 
-    entanglement_info = np.load("DATA/yeast_V2_entanglements_all_new_clustering.npz", allow_pickle = True)["arr_0"].tolist()
+    entanglement_info = np.load("DATA/yeast_non_covalent_lassos_4_5_no_knots.npz", allow_pickle = True)["arr_0"].tolist()
 
     functional_info = np.load("DATA/yeast_V2_functional_all.npz", allow_pickle = True)["arr_0"].tolist()
 
@@ -397,13 +397,13 @@ def main():
 
         done_genes = set([p_value_files.split("-")[0] for p_value_files in os.listdir("DATA/yeast_mc_pvals_stochastic_full")])
         
-        skipped = {"P39958", "P14743", "P23254", "P15202", "P35844", "P07149"}
+        skipped = {"P39958", "P14743", "P23254", "P15202", "P35844", "P07149", "P13382", "P07251", "P00830", "Q07794"}
         
         common_genes = common_genes - done_genes - skipped
 
-        pdb_resids = np.load("DATA/pdb_resids_Yeast_V2.npz", allow_pickle = True)["arr_0"].tolist()
+        pdb_resids = np.load("DATA/pdb_resids_Yeast_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
-        pdb_coor = np.load("DATA/pdb_coor_Yeast_V2.npz", allow_pickle = True)["arr_0"].tolist()
+        pdb_coor = np.load("DATA/pdb_coor_Yeast_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
         print("check point 1")
 

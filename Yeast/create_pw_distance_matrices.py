@@ -9,13 +9,11 @@ Create distance matrices for the structural analysis
 
 """
 
-all_entanglments = np.load("DATA/yeast_V2_entanglements_all_new_clustering.npz", allow_pickle = True)["arr_0"].tolist()
+all_entanglments = np.load("DATA/yeast_non_covalent_lassos_4_5_no_knots.npz", allow_pickle = True)["arr_0"].tolist()
 
-pdb_resids = np.load("DATA/pdb_resids_Yeast_V2.npz", allow_pickle = True)["arr_0"].tolist()
+pdb_resids = np.load("DATA/pdb_resids_Yeast_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
-pdb_coors = np.load("DATA/pdb_coor_Yeast_V2.npz", allow_pickle = True)["arr_0"].tolist()
-
-# pdb_resids and pdb_coors contain info for common genes only
+pdb_coors = np.load("DATA/pdb_coor_Yeast_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
 QC = {}
 
@@ -23,7 +21,7 @@ single_cr = set()
 
 mc_cr = set()
 
-for each_gene in pdb_resids:
+for each_gene in all_entanglments:
 
     num_cr_to_ents = defaultdict(list)
 
@@ -64,16 +62,18 @@ for each_gene in pdb_resids:
 
                 # checked that len(crossings) == len(crossings_coors)
 
-                pw_dist = pdist(crossings_coors)
+                if len(crossings) == len(set(crossings)):
 
-                if X_num_cr not in QC:
-                    QC[X_num_cr] = {}
+                    pw_dist = pdist(crossings_coors)
 
-                if (each_gene, rep_pdb, rep_chain) not in QC[X_num_cr]:
+                    if X_num_cr not in QC:
+                        QC[X_num_cr] = {}
 
-                    QC[X_num_cr][(each_gene, rep_pdb, rep_chain)] = defaultdict(list)
-                
-                QC[X_num_cr][(each_gene, rep_pdb, rep_chain)][ent].append(pw_dist)
+                    if (each_gene, rep_pdb, rep_chain) not in QC[X_num_cr]:
+
+                        QC[X_num_cr][(each_gene, rep_pdb, rep_chain)] = defaultdict(list)
+                    
+                    QC[X_num_cr][(each_gene, rep_pdb, rep_chain)][ent].append(pw_dist)
 
 X_num_cr_distances = defaultdict(list)
 

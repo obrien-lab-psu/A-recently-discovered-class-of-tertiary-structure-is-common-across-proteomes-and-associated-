@@ -102,7 +102,7 @@ def null_dist_p_val_calc(param: tuple):
 
         gene_pdb_chain = f"{uniprot}_{gene_pdb}_{rep_chain}"
 
-        with open("DATA/yeast_sasa_dict.pkl", "rb") as reader:
+        with open("DATA/yeast_sasa_dict_new.pkl", "rb") as reader:
 
             sasa_data_arrays = pickle.load(reader)[uniprot][gene_pdb][rep_chain]
 
@@ -190,7 +190,7 @@ def check_random_position(difference_residues: set, gene_pdb_chain: str, sasa_da
 
         solvent_exposure = sasa_data_arrays["all_resids_avg_ratios"][random_placement_idx][0]
 
-        random_placement_solv_exposure_probability = 0.0001 + 0.9423*np.exp(-244.039*solvent_exposure) + 0.0474*np.exp(-16.2326*solvent_exposure) + 0.0103*np.exp(-2.762*solvent_exposure)
+        random_placement_solv_exposure_probability = 0.0001 + 0.931*np.exp(-266.8475*solvent_exposure) + 0.057*np.exp(-21.4428*solvent_exposure) + 0.012*np.exp(-2.7098*solvent_exposure)
         # bin = 0.01
 
         check_difference_residues.discard(random_placement)
@@ -396,7 +396,7 @@ def main():
 
         print(func_site)
 
-        entanglement_info = np.load("DATA/yeast_V2_entanglements_all_new_clustering.npz", allow_pickle = True)["arr_0"].tolist()
+        entanglement_info = np.load("DATA/yeast_non_covalent_lassos_4_5_no_knots.npz", allow_pickle = True)["arr_0"].tolist()
         
         if not func_site.startswith("PDB_metal_interface"):
 
@@ -410,7 +410,7 @@ def main():
 
             common_genes = set(functional_info.keys()).intersection(entanglement_info.keys())
 
-            skipped = {"P39958", "P14743", "P23254", "P15202", "P35844", "P07149"}
+            skipped = {"P39958", "P14743", "P23254", "P15202", "P35844", "P07149", "P13382", "P07251", "P00830", "Q07794"}
 
             saved_func_site = func_site.replace(" ", "_")
             saved_func_site = saved_func_site.replace("-", "_")
@@ -419,9 +419,9 @@ def main():
 
             common_genes = common_genes - skipped - set(done_genes)
 
-            pdb_resids = np.load("DATA/pdb_resids_Yeast_V2.npz", allow_pickle = True)["arr_0"].tolist()
+            pdb_resids = np.load("DATA/pdb_resids_Yeast_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
-            pdb_coor = np.load("DATA/pdb_coor_Yeast_V2.npz", allow_pickle = True)["arr_0"].tolist()
+            pdb_coor = np.load("DATA/pdb_coor_Yeast_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
             params = (pdb_resids, pdb_coor, functional_info, entanglement_info, func_site, common_genes)
 
