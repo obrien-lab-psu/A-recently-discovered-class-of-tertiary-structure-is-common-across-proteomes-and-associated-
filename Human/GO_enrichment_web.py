@@ -234,41 +234,7 @@ def fishers_exact_test(rep_genes: list, GO_class: str):
 
     transformed_data = np.load(f"DATA/{GO_class}_combined_level_GO_annot.npz", allow_pickle=True)["arr_0"].tolist()
 
-    Ent_genes_PDBs = np.loadtxt("DATA/rep_genes_with_entanglements.txt", dtype = str, usecols = (0, 1))
-
-    Ent_genes = Ent_genes_PDBs[:, 0]
-
-    knotted_proteins = np.load("DATA/percentages_of_knots_in_my_db.npz", allow_pickle=True)["arr_0"].tolist()
-
-    human_knotted_PDBs = np.concatenate([knotted_proteins[organ_kp] for organ_kp in knotted_proteins if organ_kp.startswith("human")])
-    
-    human_knotted_genes = []
-
-    offset = 0
-
-    for kPDB in human_knotted_PDBs:
-
-        if kPDB in Ent_genes_PDBs[:, 1]:
-
-            idx = np.where(kPDB == Ent_genes_PDBs[:, 1])[0]
-
-            if len(idx) > 1:
-                # case in which a PDB has two different genes
-                # Ex: 4NDN belong to gene P31153 and gene Q9NZL9; have different chains
-                # only in humans
-                offset += len(idx) - 1
-
-            human_knotted_genes.extend(Ent_genes_PDBs[idx][:, 0])
-
-    if len(human_knotted_genes) != len(human_knotted_PDBs) + offset:
-        print("Did not separate human knotted genes correctly!")
-        sys.exit(0)
-
-    disulfide_lassos_from_mapping = np.load("DATA/Disulfide_lassos_from_mapping.npz", allow_pickle = True)["arr_0"].tolist()
-
-    d_ents_genes = [gene.split("_")[1].strip() for gene in disulfide_lassos_from_mapping if gene.startswith("human")]
-
-    Ent_genes = set(Ent_genes) - set(human_knotted_genes) - set(d_ents_genes)
+    Ent_genes = np.loadtxt("DATA/human_genes_with_non_cov_ent_no_knots_4_5.txt", delimiter = " ", dtype = str)[:, 0]
 
     enriched_results = defaultdict(list)
 
@@ -396,7 +362,7 @@ def create_excel(rep_genes: list):
 
             cell_row += 1
         
-    wb.save("DATA/Human_GO_stats.xlsx")
+    wb.save("DATA/Human_GO_stats_new.xlsx")
 
     wb.close()
 

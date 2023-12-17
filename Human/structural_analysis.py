@@ -28,10 +28,10 @@ def null_dist_p_val_calc(uniprot: str):
 
     """
 
-    pdb_resids = np.load("DATA/pdb_resids_Human_V2.npz", allow_pickle = True)["arr_0"].tolist()
-    pdb_coor = np.load("DATA/pdb_coor_Human_V2.npz", allow_pickle = True)["arr_0"].tolist()
+    pdb_resids = np.load("DATA/pdb_resids_Human_V3.npz", allow_pickle = True)["arr_0"].tolist()
+    pdb_coor = np.load("DATA/pdb_coor_Human_V3.npz", allow_pickle = True)["arr_0"].tolist()
     functional_info = np.load("DATA/human_V2_functional_all.npz", allow_pickle = True)["arr_0"].tolist()
-    entanglement_info =  np.load("DATA/human_V2_entanglements_all_new_clustering.npz", allow_pickle = True)["arr_0"].tolist()
+    entanglement_info =  np.load("DATA/human_non_covalent_lassos_4_5_no_knots.npz", allow_pickle = True)["arr_0"].tolist()
 
     logger.info(f"Try: {uniprot}")
 
@@ -106,7 +106,7 @@ def null_dist_p_val_calc(uniprot: str):
 
     gene_pdb_chain = f"{uniprot}_{gene_pdb}_{rep_chain}"
 
-    with open("DATA/human_sasa_dict.pkl", "rb") as reader:
+    with open("DATA/human_sasa_dict_new.pkl", "rb") as reader:
 
         sasa_data_arrays = pickle.load(reader)[uniprot][gene_pdb][rep_chain]
 
@@ -191,7 +191,7 @@ def check_random_position(difference_residues: set, gene_pdb_chain: str, sasa_da
 
         solvent_exposure = sasa_data_arrays["all_resids_avg_ratios"][random_placement_idx][0]
 
-        random_placement_solv_exposure_probability = 0.9386*np.exp(-252.8248*solvent_exposure) + 0.0505*np.exp(-19.3577*solvent_exposure) + 0.0109*np.exp(-2.4947*solvent_exposure)
+        random_placement_solv_exposure_probability = 0.0001 + 0.9358*np.exp(-256.3507*solvent_exposure) + 0.0519*np.exp(-22.7533*solvent_exposure) + 0.0123*np.exp(-2.6719*solvent_exposure)
         # bin = 0.01
         
         check_difference_residues.discard(random_placement)
@@ -384,7 +384,7 @@ def main():
 
     result_obj = set()
 
-    entanglement_info = np.load("DATA/human_V2_entanglements_all_new_clustering.npz", allow_pickle = True)["arr_0"].tolist()
+    entanglement_info = np.load("DATA/human_non_covalent_lassos_4_5_no_knots.npz", allow_pickle = True)["arr_0"].tolist()
 
     functional_info = np.load("DATA/human_V2_functional_all.npz", allow_pickle = True)["arr_0"].tolist()
 
@@ -398,13 +398,14 @@ def main():
         
         skipped = {"P16615", "Q8NB78", "O60551", "P30419", "Q9H0W9", "Q14562", "P11413", 
         "Q16790", "P14735", "O43570", "Q96HY7", "P04040", "Q9BZE1", "Q9NP92", "Q2NL82", 
-        "Q9NR71", "Q8N1Q1", "P43166", "P27338", "Q9BU02", "P35219"}
+        "Q9NR71", "Q8N1Q1", "P43166", "P27338", "Q9BU02", "P35219", 
+        "Q96PN6", "P21399", "Q9UGM6", "Q06278", "P21397", "P16278", "Q92542"}
 
         common_genes = common_genes - done_genes - skipped
 
-        pdb_resids = np.load("DATA/pdb_resids_Human_V2.npz", allow_pickle = True)["arr_0"].tolist()
+        pdb_resids = np.load("DATA/pdb_resids_Human_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
-        pdb_coor = np.load("DATA/pdb_coor_Human_V2.npz", allow_pickle = True)["arr_0"].tolist()
+        pdb_coor = np.load("DATA/pdb_coor_Human_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
         with mp.get_context("forkserver").Pool(cores) as p:
 

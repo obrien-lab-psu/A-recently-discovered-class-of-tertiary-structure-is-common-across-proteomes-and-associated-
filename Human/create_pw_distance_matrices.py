@@ -9,11 +9,11 @@ Create distance matrices for the structural analysis
 
 """
 
-all_entanglments = np.load("DATA/human_V2_entanglements_all_new_clustering.npz", allow_pickle = True)["arr_0"].tolist()
+all_entanglments = np.load("DATA/human_non_covalent_lassos_4_5_no_knots.npz, allow_pickle = True)["arr_0"].tolist()
 
-pdb_resids = np.load("DATA/pdb_resids_Human_V2.npz", allow_pickle = True)["arr_0"].tolist()
+pdb_resids = np.load("DATA/pdb_resids_Human_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
-pdb_coors = np.load("DATA/pdb_coor_Human_V2.npz", allow_pickle = True)["arr_0"].tolist()
+pdb_coors = np.load("DATA/pdb_coor_Human_V3.npz", allow_pickle = True)["arr_0"].tolist()
 
 # pdb_resids and pdb_coors contain info for common genes only
 
@@ -23,7 +23,7 @@ single_cr = set()
 
 mc_cr = set()
 
-for each_gene in pdb_resids:
+for each_gene in all_entanglments:
 
     num_cr_to_ents = defaultdict(list)
 

@@ -18,7 +18,7 @@ https://www.statsmodels.org/dev/generated/statsmodels.stats.multitest.multiplete
 
 """
 
-def main_question_correction(human_knotted_genes, d_ents_genes):
+def main_question_correction():
 
     enrichment_pval = []
     depletion_pval = []
@@ -36,13 +36,11 @@ def main_question_correction(human_knotted_genes, d_ents_genes):
         with open(f"DATA/human_mc_pvals_stochastic_full/{pval_files}") as reader:
             js_file = json.load(reader)
 
-        if uni not in human_knotted_genes and uni not in d_ents_genes:
-
-            enrichment_pval.append(js_file[uni]["Enrichment"])
-            depletion_pval.append(js_file[uni]["Depletion"])
-            two_tailed_pvals.append(js_file[uni]["two-tailed"])
-            genes.append(uni)
-        
+        enrichment_pval.append(js_file[uni]["Enrichment"])
+        depletion_pval.append(js_file[uni]["Depletion"])
+        two_tailed_pvals.append(js_file[uni]["two-tailed"])
+        genes.append(uni)
+    
     _, correct_pvalues, _, _ = multipletests(two_tailed_pvals, alpha=ALPHA, method="fdr_bh")
 
     for index, q_value in enumerate(correct_pvalues):
@@ -65,7 +63,7 @@ def main_question_correction(human_knotted_genes, d_ents_genes):
 
     return Enrichement, Depletion, Neither
 
-def sub_main_correction(human_knotted_genes, d_ents_genes):
+def sub_main_correction():
 
     all_individual_sites = {}
 
@@ -92,12 +90,10 @@ def sub_main_correction(human_knotted_genes, d_ents_genes):
             with open(f"DATA/individual_p_vals/{func_type}/{pval_files}") as reader:
                 js_file = json.load(reader)
 
-            if uni not in human_knotted_genes and uni not in d_ents_genes:
-
-                enrichment_pval.append(js_file[uni]["Enrichment"])
-                depletion_pval.append(js_file[uni]["Depletion"])
-                two_tailed_pvalues.append(js_file[uni]["two-tailed"])
-                genes.append(uni)
+            enrichment_pval.append(js_file[uni]["Enrichment"])
+            depletion_pval.append(js_file[uni]["Depletion"])
+            two_tailed_pvalues.append(js_file[uni]["two-tailed"])
+            genes.append(uni)
 
         _, correct_pvalues, _, _ = multipletests(two_tailed_pvalues, alpha=ALPHA, method="fdr_bh")
 
@@ -127,43 +123,9 @@ def sub_main_correction(human_knotted_genes, d_ents_genes):
     
 if __name__ == "__main__":
 
-    Ent_genes_PDBs = np.loadtxt("DATA/rep_genes_with_entanglements.txt", dtype = str, usecols = (0, 1))
-
-    Ent_genes = Ent_genes_PDBs[:, 0]
-
-    knotted_proteins = np.load("DATA/percentages_of_knots_in_my_db.npz", allow_pickle=True)["arr_0"].tolist()
-
-    human_knotted_PDBs = np.concatenate([knotted_proteins[organ_kp] for organ_kp in knotted_proteins if organ_kp.startswith("human")])
+    Enrichment, Depletion, Neither = main_question_correction()
     
-    human_knotted_genes = []
-
-    offset = 0
-
-    for kPDB in human_knotted_PDBs:
-
-        if kPDB in Ent_genes_PDBs[:, 1]:
-
-            idx = np.where(kPDB == Ent_genes_PDBs[:, 1])[0]
-
-            if len(idx) > 1:
-                # case in which a PDB has two different genes
-                # Ex: 4NDN belong to gene P31153 and gene Q9NZL9; have different chains
-                # only in humans
-                offset += len(idx) - 1
-
-            human_knotted_genes.extend(Ent_genes_PDBs[idx][:, 0])
-
-    if len(human_knotted_genes) != len(human_knotted_PDBs) + offset:
-        print("Did not separate human knotted genes correctly!")
-        sys.exit(0)
-
-    disulfide_lassos_from_mapping = np.load("DATA/Disulfide_lassos_from_mapping.npz", allow_pickle = True)["arr_0"].tolist()
-
-    d_ents_genes = [gene.split("_")[1].strip() for gene in disulfide_lassos_from_mapping if gene.startswith("human")]
-
-    Enrichment, Depletion, Neither = main_question_correction(human_knotted_genes, d_ents_genes)
-    
-    all_individual_sites = sub_main_correction(human_knotted_genes, d_ents_genes)
+    all_individual_sites = sub_main_correction()
 
     frequency_table = np.empty((8, 4))
     rows = []
