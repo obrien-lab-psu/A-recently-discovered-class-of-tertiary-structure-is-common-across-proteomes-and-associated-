@@ -235,33 +235,7 @@ def fishers_exact_test(rep_genes: list, GO_class: str):
 
     transformed_data = np.load(f"DATA/{GO_class}_combined_level_GO_annot.npz", allow_pickle=True)["arr_0"].tolist()
 
-    Ent_genes_PDBs = np.loadtxt("DATA/new_filter_gene_ent.txt", dtype = str, usecols = (0, 1))
-
-    Ent_genes = Ent_genes_PDBs[:, 0]
-
-    knotted_proteins = np.load("DATA/percentages_of_knots_in_my_db.npz", allow_pickle=True)["arr_0"].tolist()
-
-    ecoli_knotted_PDBs = np.concatenate([knotted_proteins[organ_kp] for organ_kp in knotted_proteins if organ_kp.startswith("ecoli")])
-
-    ecoli_knotted_genes = []
-
-    for kPDB in ecoli_knotted_PDBs:
-
-        if kPDB in Ent_genes_PDBs[:, 1]:
-
-            idx = np.where(kPDB == Ent_genes_PDBs[:, 1])
-
-            ecoli_knotted_genes.extend(Ent_genes_PDBs[idx][:, 0])
-
-    if len(ecoli_knotted_genes) != len(ecoli_knotted_PDBs):
-        print("Did not separate ecoli knotted genes correctly!")
-        sys.exit(0)
-
-    disulfide_lassos_from_mapping = np.load("DATA/Disulfide_lassos_from_mapping.npz", allow_pickle = True)["arr_0"].tolist()
-
-    d_ents_genes = [gene.split("_")[1].strip() for gene in disulfide_lassos_from_mapping if gene.startswith("ecoli")]
-
-    Ent_genes = set(Ent_genes) - set(ecoli_knotted_genes) - set(d_ents_genes)
+    Ent_genes = set(np.loadtxt("DATA/ecoli_genes_with_non_cov_ent_no_knots_4_5.txt", delimiter = " ", dtype = str)[:, 0])
 
     enriched_results = defaultdict(list)
 
@@ -388,7 +362,7 @@ def create_excel(rep_genes: list):
 
             cell_row += 1
         
-    wb.save("DATA/Ecoli_GO_stats.xlsx")
+    wb.save("DATA/Ecoli_GO_stats_new.xlsx")
 
     wb.close()
 

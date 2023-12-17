@@ -102,7 +102,7 @@ def null_dist_p_val_calc(param: tuple):
 
         gene_pdb_chain = f"{uniprot}_{gene_pdb}_{rep_chain}"
 
-        with open("DATA/ecoli_sasa_dict.pkl", "rb") as reader:
+        with open("DATA/ecoli_sasa_dict_new.pkl", "rb") as reader:
 
             sasa_data_arrays = pickle.load(reader)[uniprot][gene_pdb][rep_chain]
 
@@ -190,7 +190,7 @@ def check_random_position(difference_residues: set, gene_pdb_chain: str, sasa_da
 
         solvent_exposure = sasa_data_arrays["all_resids_avg_ratios"][random_placement_idx][0]
 
-        random_placement_solv_exposure_probability = 0.0007 + 0.0470 * np.exp(-10.0106 * solvent_exposure) + 0.8671 * np.exp(-221.5729 * solvent_exposure)
+        random_placement_solv_exposure_probability = 0.0007 + 0.8788*np.exp(-227.2166*solvent_exposure) + 0.0476*np.exp(-10.0912*solvent_exposure)
         # bin = 0.01
 
         check_difference_residues.discard(random_placement)
@@ -391,7 +391,7 @@ def main():
 
         print(func_site)
 
-        entanglement_info = np.load("DATA/ecoli_V5_entanglements_all_new_clustering.npz", allow_pickle = True)["arr_0"].tolist()
+        entanglement_info = np.load("DATA/ecoli_non_covalent_lassos_4_5_no_knots.npz", allow_pickle = True)["arr_0"].tolist()
         
         if not func_site.startswith("PDB_metal_interface"):
 
@@ -407,7 +407,7 @@ def main():
 
             common_genes = common_genes - set(["P31224"])
 
-            skipped = {"P0AGG8", "P24171", "P09152", "P0AFG8", "P27302", "P24183", "P21179", "P0AGM7", "P33937"}
+            skipped = {"P0AGG8", "P24171", "P09152", "P0AFG8", "P27302", "P24183", "P21179", "P0AGM7", "P33937", "P77182", "P78067", "P0AGG2"}
 
             saved_func_site = func_site.replace(" ", "_")
             saved_func_site = saved_func_site.replace("-", "_")
@@ -416,9 +416,9 @@ def main():
 
             common_genes = common_genes - skipped - set(done_genes)
 
-            pdb_resids = np.load("DATA/pdb_resids_Ecoli_V5.npz", allow_pickle = True)["arr_0"].tolist()
+            pdb_resids = np.load("DATA/pdb_resids_Ecoli_V6.npz", allow_pickle = True)["arr_0"].tolist()
 
-            pdb_coor = np.load("DATA/pdb_coor_Ecoli_V5.npz", allow_pickle = True)["arr_0"].tolist()
+            pdb_coor = np.load("DATA/pdb_coor_Ecoli_V6.npz", allow_pickle = True)["arr_0"].tolist()
 
             params = (pdb_resids, pdb_coor, functional_info, entanglement_info, func_site, common_genes)
 

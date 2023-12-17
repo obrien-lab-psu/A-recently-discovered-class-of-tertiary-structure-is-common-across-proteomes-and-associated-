@@ -9,61 +9,60 @@ Create distance matrices for the structural analysis
 
 """
 
-all_entanglments = np.load("DATA/ecoli_V5_entanglements_all_new_clustering.npz", allow_pickle = True)["arr_0"].tolist()
+all_entanglments = np.load("DATA/ecoli_non_covalent_lassos_4_5_no_knots.npz", allow_pickle = True)["arr_0"].tolist()
 
-pdb_resids = np.load("DATA/pdb_resids_Ecoli_V5.npz", allow_pickle = True)["arr_0"].tolist()
+pdb_resids = np.load("DATA/pdb_resids_Ecoli_V6.npz", allow_pickle = True)["arr_0"].tolist()
 
-pdb_coors = np.load("DATA/pdb_coor_Ecoli_V5.npz", allow_pickle = True)["arr_0"].tolist()
-
-# pdb_resids and pdb_coors contain info for common genes only
+pdb_coors = np.load("DATA/pdb_coor_Ecoli_V6.npz", allow_pickle = True)["arr_0"].tolist()
 
 QC = {}
 
-all_genes = list(pdb_resids)
-all_genes.remove("P31224")
+for each_gene in all_entanglments:
 
-for each_gene in all_genes:
+    if each_gene != "P31224":
 
-    num_cr_to_ents = defaultdict(list)
+        num_cr_to_ents = defaultdict(list)
 
-    rep_pdb = list(all_entanglments[each_gene].keys())[0]
+        rep_pdb = list(all_entanglments[each_gene].keys())[0]
 
-    rep_chain = list(all_entanglments[each_gene][rep_pdb].keys())[0]
+        rep_chain = list(all_entanglments[each_gene][rep_pdb].keys())[0]
 
-    gene_resid = pdb_resids[each_gene][rep_pdb][rep_chain]
+        gene_resid = pdb_resids[each_gene][rep_pdb][rep_chain]
 
-    gene_coor = pdb_coors[each_gene][rep_pdb][rep_chain]
+        gene_coor = pdb_coors[each_gene][rep_pdb][rep_chain]
 
-    for rep_ent in all_entanglments[each_gene][rep_pdb][rep_chain]:
+        for rep_ent in all_entanglments[each_gene][rep_pdb][rep_chain]:
 
-        number_of_crossing = len(all_entanglments[each_gene][rep_pdb][rep_chain][rep_ent]["def_3"])
+            number_of_crossing = len(all_entanglments[each_gene][rep_pdb][rep_chain][rep_ent]["def_3"])
 
-        if number_of_crossing != 1:
+            if number_of_crossing != 1:
 
-            num_cr_to_ents[number_of_crossing].append(rep_ent)
+                num_cr_to_ents[number_of_crossing].append(rep_ent)
 
-    if num_cr_to_ents:
+        if num_cr_to_ents:
 
-        for X_num_cr, ents in num_cr_to_ents.items():
+            for X_num_cr, ents in num_cr_to_ents.items():
 
-            for ent in ents:
+                for ent in ents:
 
-                crossings = ent[-X_num_cr:]
+                    crossings = ent[-X_num_cr:]
 
-                crossings_coors = [gene_coor[np.where(cr == gene_resid)][0] for cr in crossings]
+                    crossings_coors = [gene_coor[np.where(cr == gene_resid)][0] for cr in crossings]
 
-                # checked that len(crossings) == len(crossings_coors)
+                    # checked that len(crossings) == len(crossings_coors)
 
-                pw_dist = pdist(crossings_coors)
+                    if len(crossings) == len(set(crossings)):
 
-                if X_num_cr not in QC:
-                    QC[X_num_cr] = {}
+                        pw_dist = pdist(crossings_coors)
 
-                if (each_gene, rep_pdb, rep_chain) not in QC[X_num_cr]:
+                        if X_num_cr not in QC:
+                            QC[X_num_cr] = {}
 
-                    QC[X_num_cr][(each_gene, rep_pdb, rep_chain)] = defaultdict(list)
-                
-                QC[X_num_cr][(each_gene, rep_pdb, rep_chain)][ent].append(pw_dist)
+                        if (each_gene, rep_pdb, rep_chain) not in QC[X_num_cr]:
+
+                            QC[X_num_cr][(each_gene, rep_pdb, rep_chain)] = defaultdict(list)
+                        
+                        QC[X_num_cr][(each_gene, rep_pdb, rep_chain)][ent].append(pw_dist)
 
 X_num_cr_distances = defaultdict(list)
 

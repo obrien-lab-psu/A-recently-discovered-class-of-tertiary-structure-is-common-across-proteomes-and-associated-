@@ -18,7 +18,7 @@ https://www.statsmodels.org/dev/generated/statsmodels.stats.multitest.multiplete
 
 """
 
-def main_question_correction(ecoli_knotted_genes, d_ents_genes):
+def main_question_correction():
 
     enrichment_pval = []
     depletion_pval = []
@@ -36,12 +36,10 @@ def main_question_correction(ecoli_knotted_genes, d_ents_genes):
         with open(f"DATA/ecoli_mc_pvals_stochastic_full/{pval_files}") as reader:
             js_file = json.load(reader)
 
-        if uni not in ecoli_knotted_genes and uni not in d_ents_genes:
-        
-            enrichment_pval.append(js_file[uni]["Enrichment"])
-            depletion_pval.append(js_file[uni]["Depletion"])
-            two_tailed_pvals.append(js_file[uni]["two-tailed"])
-            genes.append(uni)
+        enrichment_pval.append(js_file[uni]["Enrichment"])
+        depletion_pval.append(js_file[uni]["Depletion"])
+        two_tailed_pvals.append(js_file[uni]["two-tailed"])
+        genes.append(uni)
     
     _, correct_pvalues, _, _ = multipletests(two_tailed_pvals, alpha=ALPHA, method="fdr_bh")
 
@@ -65,7 +63,7 @@ def main_question_correction(ecoli_knotted_genes, d_ents_genes):
 
     return Enrichement, Depletion, Neither
 
-def sub_main_correction(ecoli_knotted_genes, d_ents_genes):
+def sub_main_correction():
 
     all_individual_sites = {}
 
@@ -92,12 +90,10 @@ def sub_main_correction(ecoli_knotted_genes, d_ents_genes):
             with open(f"DATA/individual_p_vals/{func_type}/{pval_files}") as reader:
                 js_file = json.load(reader)
 
-            if uni not in ecoli_knotted_genes and uni not in d_ents_genes:
-
-                enrichment_pval.append(js_file[uni]["Enrichment"])
-                depletion_pval.append(js_file[uni]["Depletion"])
-                two_tailed_pvalues.append(js_file[uni]["two-tailed"])
-                genes.append(uni)
+            enrichment_pval.append(js_file[uni]["Enrichment"])
+            depletion_pval.append(js_file[uni]["Depletion"])
+            two_tailed_pvalues.append(js_file[uni]["two-tailed"])
+            genes.append(uni)
 
         _, correct_pvalues, _, _ = multipletests(two_tailed_pvalues, alpha=ALPHA, method="fdr_bh")
 
@@ -127,33 +123,9 @@ def sub_main_correction(ecoli_knotted_genes, d_ents_genes):
     
 if __name__ == "__main__":
 
-    Ent_genes_PDBs = np.loadtxt("DATA/new_filter_gene_ent.txt", dtype = str, usecols = (0, 1))
-
-    knotted_proteins = np.load("DATA/percentages_of_knots_in_my_db.npz", allow_pickle=True)["arr_0"].tolist()
-
-    ecoli_knotted_PDBs = np.concatenate([knotted_proteins[organ_kp] for organ_kp in knotted_proteins if organ_kp.startswith("ecoli")])
-
-    ecoli_knotted_genes = []
-
-    for kPDB in ecoli_knotted_PDBs:
-
-        if kPDB in Ent_genes_PDBs[:, 1]:
-
-            idx = np.where(kPDB == Ent_genes_PDBs[:, 1])
-        
-            ecoli_knotted_genes.extend(Ent_genes_PDBs[idx][:, 0])
+    Enrichment, Depletion, Neither = main_question_correction()
     
-    if len(ecoli_knotted_genes) != len(ecoli_knotted_PDBs):
-        print("Did not separate ecoli knotted genes correctly!")
-        sys.exit(0)
-
-    disulfide_lassos_from_mapping = np.load("DATA/Disulfide_lassos_from_mapping.npz", allow_pickle = True)["arr_0"].tolist()
-
-    d_ents_genes = [gene.split("_")[1].strip() for gene in disulfide_lassos_from_mapping if gene.startswith("ecoli")]
-
-    Enrichment, Depletion, Neither = main_question_correction(ecoli_knotted_genes, d_ents_genes)
-    
-    all_individual_sites = sub_main_correction(ecoli_knotted_genes, d_ents_genes)
+    all_individual_sites = sub_main_correction()
 
     frequency_table = np.empty((8, 4))
     rows = []
