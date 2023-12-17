@@ -20,7 +20,6 @@ Note that the code was run and optimized on a linux machine.
 Clone the project
 
 ```bash
-git clone https://github.com/VirajRana0/NCLE_GO_Project.git OR
 git clone https://github.com/obrien-lab-psu/Non-covalent-Lasso-Entanglements-in-Folded-Proteins-Prevalence-Functional-Implications-and-Evolut.git
 ```
 Please make sure to install Python 3.9 or higher and the neccessary packages/modules using: 
