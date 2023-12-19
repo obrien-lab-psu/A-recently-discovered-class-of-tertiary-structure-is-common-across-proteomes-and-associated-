@@ -39,7 +39,7 @@ To generate entanglements, please follow these steps under the `Entanglement_cod
 2. Run the entanglement code
 
 ```python 
-python guassian_entanglement.py
+python gaussian_entanglement_v4.5.py
 ```
 The output is located in `unmapped_GE` directory. 
 
