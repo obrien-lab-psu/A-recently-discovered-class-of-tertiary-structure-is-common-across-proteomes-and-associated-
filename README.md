@@ -22,7 +22,7 @@ Clone the project
 ```bash
 git clone https://github.com/obrien-lab-psu/Non-covalent-Lasso-Entanglements-in-Folded-Proteins-Prevalence-Functional-Implications-and-Evolut.git
 ```
-Please make sure to install Python 3.9 or higher and the neccessary packages/modules using: 
+Please make sure to install Python version >= 3.9 and <=3.10. At the time of last update, the upper version limit was due to the Numba dependency. All the neccessary packages/modules can be installed using: 
 
 ```bash 
 pip install -r requirements.txt
@@ -39,7 +39,7 @@ To generate entanglements, please follow these steps under the `Entanglement_cod
 2. Run the entanglement code
 
 ```python 
-python guassian_entanglement.py
+python gaussian_entanglement_v4.5.py
 ```
 The output is located in `unmapped_GE` directory. 
 
