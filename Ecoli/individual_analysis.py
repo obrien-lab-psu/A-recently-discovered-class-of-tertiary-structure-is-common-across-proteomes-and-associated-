@@ -429,7 +429,7 @@ def main():
                 result_obj.add(results)
                 
                 for result in result_obj:
-                    pval  = result.get()
+                    result.get()
             
 
 if __name__ == "__main__":

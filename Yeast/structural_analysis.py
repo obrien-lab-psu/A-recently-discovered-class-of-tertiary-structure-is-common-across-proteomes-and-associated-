@@ -28,8 +28,8 @@ def null_dist_p_val_calc(uniprot: str):
 
     """
 
-    pdb_resids = np.load("DATA/pdb_resids_Yeast_V3.npz.npz", allow_pickle = True)["arr_0"].tolist()
-    pdb_coor = np.load("DATA/pdb_coor_Yeast_V3.npz.npz", allow_pickle = True)["arr_0"].tolist()
+    pdb_resids = np.load("DATA/pdb_resids_Yeast_V3.npz", allow_pickle = True)["arr_0"].tolist()
+    pdb_coor = np.load("DATA/pdb_coor_Yeast_V3.npz", allow_pickle = True)["arr_0"].tolist()
     functional_info = np.load("DATA/yeast_V2_functional_all.npz", allow_pickle = True)["arr_0"].tolist()
     entanglement_info =  np.load("DATA/yeast_non_covalent_lassos_4_5_no_knots.npz", allow_pickle = True)["arr_0"].tolist()
 

@@ -371,13 +371,13 @@ if __name__ == "__main__":
 
     rep_genes = load_rep_genes()
 
-    # run_mp_get_GO_annotations(rep_genes)
+    run_mp_get_GO_annotations(rep_genes)
 
-    # for go_class in ["molecular_function", "biological_process", "cellular_component"]:
+    for go_class in ["molecular_function", "biological_process", "cellular_component"]:
 
-    #     run_mp_transform_leaf(go_class, 2)
-    #     run_mp_transform_leaf(go_class, 3)
+         run_mp_transform_leaf(go_class, 2)
+         run_mp_transform_leaf(go_class, 3)
 
-    # combine_GO_annotations_lvl_wise()
+    combine_GO_annotations_lvl_wise()
 
     create_excel(rep_genes.split(","))
