@@ -381,7 +381,6 @@ def random_shuffling_w_spatial_correlation(pdb_resids: dict, pdb_coor: dict, ent
 def main():
     
     cores = len(os.sched_getaffinity(0))
-
     result_obj = set()
 
     functional_sites = ["PDB_metal_interface",
@@ -432,7 +431,7 @@ def main():
                 result_obj.add(results)
                 
                 for result in result_obj:
-                    pval  = result.get()
+                    result.get()
             
 
 if __name__ == "__main__":

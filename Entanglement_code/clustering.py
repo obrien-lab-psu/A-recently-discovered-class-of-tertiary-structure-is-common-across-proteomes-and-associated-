@@ -88,7 +88,13 @@ def cluster_entanglements(GE_file_w_cutoff: tuple):
     GE_file = GE_file_w_cutoff[0]
     cut_off = GE_file_w_cutoff[1]
 
-    protein, _ = GE_file.split("_")
+    filename_split = GE_file.split("_")
+    
+    #Add filename warning
+    if len(filename_split) > 2:
+        print('Warning: The unmapped_GE filenames should only contain a single "_" character: ',GE_file) 
+
+    protein = filename_split[0]
 
     if f"{protein}_clustered_GE.txt" not in os.listdir("clustered_unmapped_GE/"):
 

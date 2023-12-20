@@ -417,7 +417,7 @@ def main():
 
                 results = p.map_async(null_dist_p_val_calc, iterable = list(common_genes), chunksize = len(list(common_genes)) // (cores ** 2) + 1)
                 
-                pval  = results.get()
+                results.get()
             
 
 if __name__ == "__main__":
