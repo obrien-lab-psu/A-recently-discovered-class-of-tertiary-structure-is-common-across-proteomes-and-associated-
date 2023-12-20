@@ -93,7 +93,7 @@ for num_of_cr, protein_w_cr_dist in QC.items():
 # for X_num, dist_matrices in X_num_cr_distances.items():
 #     print(X_num, len(dist_matrices))
 
-# np.savez("DATA/Array_of_distance_matrices.npz", X_num_cr_distances)
+np.savez("DATA/Array_of_distance_matrices.npz", X_num_cr_distances)
 
     
 

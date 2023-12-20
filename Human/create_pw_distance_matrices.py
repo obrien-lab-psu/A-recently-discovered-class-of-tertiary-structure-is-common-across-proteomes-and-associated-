@@ -104,7 +104,7 @@ for num_of_cr, protein_w_cr_dist in QC.items():
                 print(protein, ent, dist, cr_check, len(dist[0]))
 
 
-# np.savez("DATA/Array_of_distance_matrices.npz", X_num_cr_distances)
+np.savez("DATA/Array_of_distance_matrices.npz", X_num_cr_distances)
 
 
 

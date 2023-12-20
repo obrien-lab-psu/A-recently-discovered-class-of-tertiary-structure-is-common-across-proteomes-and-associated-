@@ -411,7 +411,7 @@ def main():
 
             results = p.map_async(null_dist_p_val_calc, iterable = list(common_genes), chunksize = len(common_genes) // (cores ** 2) + 1)
             
-            pval  = results.get()
+            results.get()
 
     print("check point 2")
 
