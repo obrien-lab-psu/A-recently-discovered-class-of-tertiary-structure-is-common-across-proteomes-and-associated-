@@ -73,8 +73,13 @@ Code and Data for the enrichment tests are located in the Ecoli, Yeast and Human
   individual_analysis.py ---> Structural enrichment test
   
   All the data required to run these tests are located under DATA/ folder for each organism. 
-  They were obtained as described in the Methods. 
+  They were obtained as described in the Methods.
 ```
+### Note for the Structural enrichement tests. 
+All the p-values have been calculated already, so running the code will not do anything.
+Why? The code check the `DATA` folder if a p-value has been calculated. If so, the code will not run. 
+Please provide new input if you plan to use the code. 
+
 ## Entanglement Demo
 
 An example has been calculated for the <u>E.coli 50S ribosomal subunit</u> (**PDB ID**: 6XZ7 chain S)
