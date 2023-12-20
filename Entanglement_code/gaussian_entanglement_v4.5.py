@@ -450,7 +450,7 @@ def calculate_native_entanglements(pdb_file: str) -> None:
 
             check_coor = coor[all_atom_idx]
 
-            structure_coor = ref_allatoms_unique.select_atoms(f"resid {resid}").positions
+            structure_coor = ref_allatoms_unique.select_atoms(f"resid {resid} or resid {resid}A").positions
 
             assert np.all(check_coor == structure_coor), f"Coordinates do not match up! Resid {resid} {pdb_file}"
 
