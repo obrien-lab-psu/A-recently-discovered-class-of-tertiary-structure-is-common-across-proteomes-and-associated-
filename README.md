@@ -99,7 +99,7 @@ If you found the code or data useful, please consider citing the paper:
   author       = {Viraj Rana, Ian Sitarik, Justin Petucci, Yang Jiang, Hyebin Song, and Edward P. O'Brien},
   journal      = {Journal of Molecular Biology},
   title        = {Non-covalent Lasso Entanglements in Folded Proteins: Prevalence, Functional Implications, and Evolutionary Significance},
-  year         = {2023},
+  year         = {2024},
   doi          = {https://doi.org/10.1016/j.jmb.2024.168459},
   URL          = {https://www.sciencedirect.com/science/article/pii/S0022283624000251},
 }
