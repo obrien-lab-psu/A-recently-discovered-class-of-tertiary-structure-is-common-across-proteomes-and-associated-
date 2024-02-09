@@ -96,11 +96,11 @@ If you found the code or data useful, please consider citing the paper:
 
 ```bibtex 
 @article {Non-covalent_lasso_entanglements,
-  author       = {Viraj Rana, Ian Sitarik, Yang Jiang, Justin Petucci, Hyebin Song, and Edward P. O'Brien},
+  author       = {Viraj Rana, Ian Sitarik, Justin Petucci, Yang Jiang, Hyebin Song, and Edward P. O'Brien},
   journal      = {Journal of Molecular Biology},
   title        = {Non-covalent Lasso Entanglements in Folded Proteins: Prevalence, Functional Implications, and Evolutionary Significance},
   year         = {2023},
-  doi          = {?},
-  URL          = {?},
+  doi          = {https://doi.org/10.1016/j.jmb.2024.168459},
+  URL          = {https://www.sciencedirect.com/science/article/pii/S0022283624000251},
 }
 ```
