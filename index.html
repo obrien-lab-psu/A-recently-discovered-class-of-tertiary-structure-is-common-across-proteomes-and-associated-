@@ -85,7 +85,6 @@
 </div>
 
 <script src="https://nglviewer.org/ngl/js/ngl.js"></script>
-<script src="https://unpkg.com/three@0.150"></script>
 
 <div id="main_div" style="width:80%; height:60%; margin-left: 10%;">
   <div id="left_panel" style="float: left; width:20%; height:100%; background-color: #F0F8FF">
@@ -217,18 +216,14 @@ function reset_view() {
 
   sele = sele.trim()
   
-  var box = new THREE.Box3()
+  var new_box = null
 
   if (sele.length > 0) {
-    box = struct[0].structure.getBoundingBox(new NGL.Selection(sele))
+    new_box = struct[0].structure.getBoundingBox(new NGL.Selection(sele))
   }
 
-  var b_min = box.min.clone()
-  var b_max = box.max.clone()
-  var new_box = new THREE.Box3(b_min, b_max)
-
-  if (! new_box.isEmpty()) {
-    var new_box_center = new THREE.Vector3()
+  if (new_box != null) {
+    var new_box_center = new NGL.Vector3()
     new_box.getCenter(new_box_center)
     stage.animationControls.zoomMove(
       new_box_center,
@@ -416,7 +411,7 @@ function loadStructure (arg_str) {
         ol[0].structure.eachAtom(function (ap) {
           nc_cor.push([ap.x, ap.y, ap.z])
         }, new NGL.Selection(sel))
-        var shape = new NGL.Shape("native contact #"+(i+1), { dashedCylinder: false, radialSegments: 60 })
+        var shape = new NGL.Shape("native contact #"+(i+1), { openEnded: false, dashedCylinder: false, radialSegments: 60 })
         var direction = [ nc_cor[1][0] - nc_cor[0][0], 
                           nc_cor[1][1] - nc_cor[0][1], 
                           nc_cor[1][2] - nc_cor[0][2] ]
